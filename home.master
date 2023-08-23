@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="home.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/grid.css" rel="stylesheet" />
+    <link href="css/StyleSheet.css" rel="stylesheet" />
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/script.js"></script>
+    <script src="js/slider.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server">
+  <%-- Header --%>   
+    <div class="header-container">
+       <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="header">
+                        <div class="header-name">
+                            <h1><a href="home.aspx">YOUR<span>MART.</span></a></h1>
+                        </div>
+                        <div class="navbar">
+                            <ul class="menu">
+                                <li class="category">
+                                    <a class="cat" href="allcategories.aspx">All Category<i class="arrow fa fa-sort-down"></i></a>
+                                    <ul class="sub-category">
+                                        <asp:Repeater OnItemDataBound="Repeater1_ItemDataBound" ID="Repeater1"  runat="server" >
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="HiddenField1" Value='<%#Eval("cat_id")%>'  runat="server"/>
+                                                    <li class="sub-subcat"><a href="allsubcat.aspx?cat_id=<%#Eval("cat_id")%>"><%#Eval("category")%><i class="arrow2 fa fa-sort-up"></i></a>
+                                                    <ul class="subcat-box">
+                                                        <asp:Repeater ID="Repeater2" OnItemDataBound="Repeater2_ItemDataBound" runat="server">
+                                                            <ItemTemplate>
+                                                                <asp:HiddenField ID="HiddenField2" value='<%#Eval("sub_cat_id") %>' runat="server"></asp:HiddenField>                                                        
+                                                                <li class="box1"><a href="all_productbrand.aspx?cat_id=<%#Eval("cat_id")%>&sub_cat_id=<%#Eval("sub_cat_id") %>"><%#Eval("subcategory")%><i class="arrow2 fa fa-sort-up"></i></a>
+                                                                <ul class="mobile-list">
+                                                                    <asp:Repeater ID="Repeater3" runat="server">
+                                                                        <ItemTemplate>
+                                                                            <li class="list"><a href="productlist.aspx?cat_id=<%#Eval("cat_id")%>&sub_cat_id=<%#Eval("sub_cat_id") %>&tc_id=<%#Eval("tc_id") %>"><%#Eval("third_category") %></a></li>
+                                                                        </ItemTemplate>                                                
+                                                                    </asp:Repeater>
+                                                                </ul>
+                                                                </li>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </ul>
+                                                    </li>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </ul>
+                                    </li>
+                                        <li><a href="#">About</a></li>
+                                        <li><asp:LinkButton ID="beforelogin" runat="server" OnClick="beforelogin_Click">Login</asp:LinkButton></li>
+                                        <li><asp:LinkButton ID="afterlogin"   OnClientClick="return confirm('are you sure want to logout ?')"  runat="server" OnClick="afterlogin_Click">Logout</asp:LinkButton></li>                                
+                                        <li><a href="contact.aspx">Contact</a></li>
+                                    </ul>
+                        </div>
+                        <div class="right-bar">
+                                <i onclick="myfun()" class="search-arrow fa fa-search"></i>
+                                <a href="viewcart.aspx"><i class="fa fa-cart-plus"></i></a>
+                        </div>
+                    </div>
+                </div>           
+            </div>       
+        </div>
+   </div>
+   <div class="search-container" id="search">
+       <div class="container">
+           <div class="row">
+               <div class="clo-12">
+                   <div class="search">
+                       <div class="search-txt" id="s-txt">
+                        <i class="fa fa-search"></i>
+                        <%--<input type="search" placeholder="search here">--%>
+                           <asp:TextBox ID="search1" CssClass="txtsearch"  runat="server"></asp:TextBox>
+                           <ajaxToolkit:AutoCompleteExtender  
+                               ID="AutoCompleteExtender1" 
+                               CompletionInterval="10"
+                               Enabled="true" 
+                               ServiceMethod="GetsProductNames" 
+                               MinimumPrefixLength="1" 
+                               EnableCaching="true"  
+                               CompletionListItemCssClass ="auto"
+                               TargetControlID="search1"
+                               CompletionSetCount="1" 
+                               runat="server">
+                           </ajaxToolkit:AutoCompleteExtender>
+                       </div>
+                       <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                       <%--<a href="#">Search</a>--%>
+                       <asp:LinkButton ID="LinkButton1" runat="server">Search</asp:LinkButton>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+     <%-- Footer --%>
+        <div class="footer-container">
+    <div class="container">
+        <div class="row">
+                <div class="col-3">
+                    <div class="about">
+                        <h2>YOUR<span>MART.</span></h2>
+                        <p>We are providing to best qaulity product</p>
+                        <p><i class="fa fa-map-marker-alt"></i>Modasa, Malpur road</p>
+                        <p><i class="fa fa-envelope"></i>yourmartShopping@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="categories">
+                        <h2>CATEGORIES</h2>
+                        <h3><a href="#">Electronics</a></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="info">
+                        <h2>INFORMATION</h2>
+                        <h3><a href="#">About Us</a></h3>
+                        <h3><a href="#">Contact us</a></h3>
+                        <h3><a href="#">Privacy Policy</a></h3>
+                        <h3><a href="#">Orders and Retruns</a></h3>
+                        <h3><a href="#">Term & COnditions</a></h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="services">
+                        <h2>SERVICES</h2>
+                        <h3><a href="#">View Cart</a></h3>
+                        <h3><a href="#">Track My Order</a></h3>
+                        <h3><a href="#">FAQs</a></h3>
+                        <h3><a href="#">Help</a></h3>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+    <div class="footer-social" id="footer-social">
+        <div class="container">
+            <div class="row">
+                <div class="social-media" id="social-media">
+                    <div class="col-3">
+                        <h2 id="media1"><a href="#"><i id="media-i1" class="fab fa-instagram"></i>Instagram</a></h2>
+                    </div>
+                    <div  class="col-3">
+                        <h2 id="media2"><a href="#"><i id="media-i2" class="fab fa-facebook"></i>FaceBook</a></h2>
+                    </div>
+                    <div class="col-3">
+                        <h2 id="media3"><a href="#"><i id="media-i3" class="fab fa-twitter"></i>Twitter</a></h2>
+                    </div>
+                    <div class="col-3">
+                        <h2 id="media4"><a href="#"><i id="media-i4" class="fab fa-youtube"></i>YouTube</a></h2>
+                    </div>
+                    <p>Copyright &copy; 2021 All rights reserved | This Website made by Khilan Patel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

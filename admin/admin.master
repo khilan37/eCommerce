@@ -1,0 +1,59 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="admin.master.cs" Inherits="admin_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>YOURMART</title>
+    <link href="css/StyleSheet.css" rel="stylesheet" />
+    <link href="../fontawsome/css/all.min.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+      <div class="main-container">
+        <!-- header -->
+        <div class="header">
+        <div class="profile">
+            <ul>
+                <li>Welcome Admin<i class="fa fa-user-circle"></i>
+                <ul class="sub">
+                    <li><a href="#"><i class="fa fa-user-circle"></i>Profile</a></li>
+                    <li><a href="#"><i class="fa fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div class="title">
+                <h1>YOUR<span>MART.</span></h1>
+                <h5>ADMIN PANEL</h5>
+            </div>
+            <div class="utilities">
+                <ul>
+                    <li><a href="A_Dashboard.aspx">Dashboard</a></li>
+                    <li><a href="A_CategoryList.aspx">Category List</a></li>
+                    <li><a href="A_SubCategoryList.aspx">SubCategory List</a></li>
+                    <li><a href="A_ThirdCategoryList.aspx">ThirdCategory List</a></li>
+                    <li><a href="A_BrandList.aspx">Brand List</a></li>
+                    <li><a href="A_ProductList.aspx">Product List</a></li>
+                    <li><a href="A_OrderList.aspx">Order List</a></li>
+                    <li><a href="A_ContactList.aspx">Contact List</a></li>
+                </ul>
+            </div>
+        </div>  
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+         <!-- footer -->
+          <div class="footer">
+            <div class="title">
+                <h5>Copyright &copy; YOURMART Created by Khilan</h5>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

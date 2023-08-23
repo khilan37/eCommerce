@@ -1,0 +1,79 @@
+﻿
+:root {
+    --black: rgb(134, 131, 131);
+    --bg-color: rgba(51, 49, 49);
+    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form{
+    background-color:var(--bg-color);
+    box-shadow:var(--box-shadow);    
+    padding:25px;
+    width:500px;
+    margin: 100px auto;
+    margin-bottom:100px;
+}
+    .login-form input, .add-address input, .add-address .address, .login-form button {
+        display: block;
+        outline: none;
+        border-radius: 3px;
+        border: none;
+        width: 100%;
+        padding: 7px 0px 7px 0px;
+    }
+    .login-form input, .add-address input, .add-address .address {
+        margin-bottom: 20px;
+        margin-top: 4px;
+    }
+.login-form h1{
+    text-align:center;
+    padding:20px;
+}
+.login-form h3{
+    padding-bottom:10px;
+}
+.login-form p{
+    text-align:center;
+}
+.login-form p a{
+    margin-left:5px;
+    color:var(--black);
+}
+.shipping{
+    padding:20px;
+}
+#div1{
+    transition:1s; 
+}
+.sticky {
+    position: sticky;
+    top: 0;
+}
+.add-address, .select-address {
+    padding: 20px;
+    color: var(--black);
+}
+.select-address .select-add {
+    display: flex;
+    justify-content: space-between;
+}
+.address{
+    display:flex;
+    justify-content:space-around;
+    padding:10px;
+    
+    margin-top:20px;
+}
+.address-lbl {
+    display: block;
+    margin-top: 10px;
+}
+.address-btn {
+    display: flex;
+    align-items: center;
+}
+.address-btn .btn{
+    border:none;
+    margin-left:10px;
+    cursor:pointer;
+}
